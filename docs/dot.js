@@ -1,12 +1,10 @@
 class Dot{
-	constructor(x, y, h){
+	constructor(x, y, h, f){
 		this.pos = createVector(x,y);
-
-		// console.log(this.pos)
-		// console.log("oweihf")
 		this.hue = h;
 		this.vertices = [];
 		this.vertices.push(createVector(x,y));
+		this.f = f;
 	}
 	
 	show(){
@@ -16,7 +14,7 @@ class Dot{
 	}
 	
 	update(){
-	  let dDir = f(this.pos);
+	  let dDir = this.f(this.pos);
 	  dDir.mult(dt);
 	  
 	  this.vertices.push(createVector(this.pos.x,this.pos.y));
@@ -24,7 +22,7 @@ class Dot{
 	  this.pos.x += dDir.x;
 	  this.pos.y += dDir.y;
 	  
-	  if (fallOff > 0 && this.vertices.length > fallOff){
+	  if (fallOff >= 0 && this.vertices.length > fallOff){
 		this.vertices.splice(0,1);
 	  }
 	}

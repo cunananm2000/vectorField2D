@@ -3,21 +3,53 @@
   #sidebar {
     position: absolute; 
     z-index: 2; 
-    background-color: red; 
-    width: 200px; 
-    height: 100%; 
-    top: 0px; 
+    background-color: lightgrey; 
+    width: 220px; 
+    /* height: 80%;  */
+    top: 15%; 
     left: 0px;
+    padding: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition:all 500ms ease-in-out;
   }
+
   #sidebarBtn{
     position: absolute; 
-    z-index: 2; 
-    background-color: blue; 
-    width: 50px; 
+    z-index: 5; 
+    background-color: gray; 
+    width: 40px; 
     height: 50px; 
-    top: 50px; 
-    left: 200px;
+    top: 17%; 
+    left: 220px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    transition:all 500ms ease-in-out;
   }
+
+  /* .navbar {
+        top: 0%;
+        left: 0%;
+        position:fixed;
+        width: 100%;
+        height: 10%;
+        background-color: blue;
+        z-index: 5;
+    } */
+
+    #canvas {
+      position: fixed;
+      width: 100%;
+
+      height: 100%;
+    }
+
+    .label {
+      display: inline-block;
+      width: 140px;
+      text-align: right;
+    }​
+
 </style>
 <html lang="">
   <head>
@@ -25,19 +57,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vector field</title>
     <style> body {padding: 0; margin: 0;} </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script language="javascript" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
     <script language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.3.2/math.js" integrity="sha512-Imer9iTeuCPbyZUYNTKsBWsAk3m7n1vOgPsAmw4OlkGSS9qK3/WlJZg7wC/9kL7nUUOyb06AYS8DyYQV7ELEbg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script language="javascript" type="text/javascript" src="sketch.js"></script>
     <script language="javascript" type="text/javascript" src="dot.js"></script>
+    <script type="text/javascript" id="MathJax-script" async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+    </script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+      </script>
   </head>
   <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Vector Field</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+        </div>
+      </div>
+    </nav>
+    <!-- <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        ...
+      </div>
+    </nav> -->
     <div id="sidebar">
-
+      $\dot{x}(x,y)$ = <input type="text" id='xDotEq'>
+      <br>
+      $\dot{y}(x,y)$ = <input type="text" id='yDotEq'>
+      <br>
+      <p id="sliderOutput">Falloff = 10</p>
+      <input type="range" class="form-range" min="0" max="50" step="1" id="fallOff" value="10">
+      <br>
+      <!-- <button type="submit" id='simulateBtn'>Simulate</button> -->
+      <div class="col text-center">
+        <!-- <button class="btn btn-default">Centered button</button> -->
+        <button type="submit" class="btn btn-primary" id='simulateBtn'>Simulate</button>
+      </div>
+      <!-- <div class="block">
+          <label>Simple label</label>
+          <input type="text" />
+      </div>
+      <div class="block">
+          <label>Label with more text</label>
+          <input type="text" />
+      </div>
+      <div class="block">
+          <label>Short</label>
+          <input type="text" />
+      </div> -->
     </div>
-    <div id="sidebarBtn">
-
-    </div>
+    <div id="canvas"></div>
   </body>
+  <div id="sidebarBtn" style="font-size: 40px;">
+    &larr;
+  </div>
   <script>
 
   </script>
